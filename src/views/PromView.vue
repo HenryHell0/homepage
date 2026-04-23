@@ -1,26 +1,30 @@
 <script setup lang="ts">
-import { computed, onMounted, type ComputedRef } from 'vue'
+import { computed, onMounted, type ComputedRef, ref } from 'vue'
 import { bezier } from '@/utils/bezier'
 import { useAnimate } from '@/utils/useAnimate'
 import BackgroundImage from '@/components/prom/BackgroundImage.vue'
 
 const rate = 0.01
-let y: ComputedRef<number>
-let askY: ComputedRef<number>
 const scale = bezier(0.5, 0, 1, 0.5)
 
 const animation = useAnimate(rate, scale)
-onMounted(() => {
-      y = computed(() => animation.progress.value * window.innerHeight)
+
+// REQUIRED FIX: safe reactive window height
+const innerHeight = ref(0)
+
+// REQUIRED FIX: define computed immediately (NOT in onMounted)
+const y = computed(() => animation.progress.value * innerHeight.value)
+
+const askY = computed(() => {
+      if (animation.progress.value < 0.8) {
+            return 0
+      } else {
+            return y.value - innerHeight.value * 0.8
+      }
 })
+
 onMounted(() => {
-      askY = computed(() => {
-            if (animation.progress.value < 0.8) {
-                  return 0
-            } else {
-                  return y.value - innerHeight * 0.8
-            }
-      })
+      innerHeight.value = window.innerHeight
 })
 </script>
 
