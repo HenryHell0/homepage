@@ -9,12 +9,12 @@
                   </div>
                   <!-- HMER-whiteboard -->
                   <div class="grid-item tall hmer-whiteboard">
-                        <p><b>HMER-Whiteboard</b></p>
+                        <p><b>Inkform</b></p>
                         <p>
-                              HMER-whiteboard is a digital whiteboard that leverages mathematical
+                              Inkform is a digital whiteboard that leverages mathematical
                               handwriting recognition to input expressions.
                         </p>
-                        <a href="https://henryhell0.github.io/HMER-whiteboard" target="_blank">
+                        <a href="https://inkform.io" target="_blank">
                               <div style="font-size: small">try me!</div>
                               <img src="@/assets/whiteboard.png" draggable="false" />
                         </a>
